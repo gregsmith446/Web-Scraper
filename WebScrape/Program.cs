@@ -49,6 +49,8 @@ namespace WebScrape
 
             // navigate to the portfolio data
             driver.Navigate().GoToUrl("https://finance.yahoo.com/portfolio/p_0/view/v1");
+        
+            //next step is to scrape data to the console
         }
 }
 }
