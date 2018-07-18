@@ -51,6 +51,10 @@ namespace WebScrape
             driver.Navigate().GoToUrl("https://finance.yahoo.com/portfolio/p_0/view/v1");
         
             //next step is to scrape data to the console
+            var stocks = driver.FindElementsByXPath("//*[@id=\"main\"]/section/section[2]/div[2]/table/tbody/tr[*]/td[*]");
+
+            foreach (var stock in stocks)
+                Console.WriteLine("Stock Watchlist: " + stock.Text);       
         }
 }
 }
