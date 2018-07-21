@@ -21,12 +21,10 @@ namespace WebScrape
 
             // use web driver to go to yahoo finance page page
             driver.Navigate().GoToUrl("https://finance.yahoo.com/portfolio/p_0/view/v1");
-
             // wait for the finance page to load
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-
             // click the sign in button
-            var signIn = driver.FindElementByXPath("//*[@id=\"pf-splash\"]/section/a");
+            IWebElement signIn = driver.FindElementByXPath("//*[@id=\"pf-splash\"]/section/a");
             signIn.Click();
 
             // use element class selector to select username input box
@@ -53,8 +51,16 @@ namespace WebScrape
             //next step is to scrape data to the console
             var stocks = driver.FindElementsByXPath("//*[@id=\"main\"]/section/section[2]/div[2]/table/tbody/tr[*]/td[*]");
 
+            // foreach goes through one stock at a time
+            // stock is = stock.Text
             foreach (var stock in stocks)
-                Console.WriteLine("Stock Watchlist: " + stock.Text);       
+                Console.WriteLine("Stock Watchlist: " + stock.Text); 
+
+            // next step is to scrape ALL the data, not just the data visible
+            // or scroll down right as the page loads
+
+            // after doing that, must make a DB
+            // then, put the stock data in it
         }
 }
 }
