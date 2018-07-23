@@ -1,6 +1,7 @@
 ﻿using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 
 namespace WebScrape
@@ -9,9 +10,10 @@ namespace WebScrape
     {
         static void Main(string[] args)
         {
-            
+
             // link ChromeDriver.exe to program
             ChromeOptions options = new ChromeOptions();
+            options.AddArgument("--headless");
             options.AddArguments("test-type");
             options.AddArgument("--disable-popup-blocking");
             options.AddArgument("--ignore-certificate-errors");
@@ -47,21 +49,34 @@ namespace WebScrape
 
             // navigate to the portfolio data
             driver.Navigate().GoToUrl("https://finance.yahoo.com/portfolio/p_0/view/v1");
-        
-            //next step is to scrape data to the console
+
+            //scrape data to the console
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             var stocks = driver.FindElementsByXPath("//*[@id=\"main\"]/section/section[2]/div[2]/table/tbody/tr[*]/td[*]");
 
+            //var elem = driver.FindElementsByXPath("//*[@id=\"main\"]/section/section[2]/div[2]/table/tbody/tr[10]/td[13]");
+            //((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", elem);
+
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
             // foreach goes through one stock at a time
-            // stock is = stock.Text
             foreach (var stock in stocks)
-                Console.WriteLine("Stock Watchlist: " + stock.Text); 
+                Console.WriteLine("Stock Watchlist: " + stock.Text);
+
 
             // next step is to scrape ALL the data, not just the data visible
             // or scroll down right as the page loads
 
+            // declare an object
+            // ex/ stock -- > name, price, etc.
+
+            // funnel stock data into an array
+            // place that object in the DB
             // after doing that, must make a DB
             // then, put the stock data in it
+
+
         }
-}
+    }
 }
 
+// possible room for improvement --> optimize wait times by waiting for element specific to the functionality
