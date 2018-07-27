@@ -51,13 +51,13 @@ namespace WebScrape
             driver.Navigate().GoToUrl("https://finance.yahoo.com/portfolio/p_0/view/v1");
 
             //scrape data to the console
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
             var stocks = driver.FindElementsByXPath("//*[@id=\"main\"]/section/section[2]/div[2]/table/tbody/tr[*]/td[*]");
 
             //var elem = driver.FindElementsByXPath("//*[@id=\"main\"]/section/section[2]/div[2]/table/tbody/tr[10]/td[13]");
             //((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", elem);
 
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
             // foreach goes through one stock at a time
             foreach (var stock in stocks)
                 Console.WriteLine("Stock Watchlist: " + stock.Text);
@@ -65,15 +65,6 @@ namespace WebScrape
 
             // next step is to scrape ALL the data, not just the data visible
             // or scroll down right as the page loads
-
-            // declare an object
-            // ex/ stock -- > name, price, etc.
-
-            // funnel stock data into an array
-            // place that object in the DB
-            // after doing that, must make a DB
-            // then, put the stock data in it
-
 
         }
     }
