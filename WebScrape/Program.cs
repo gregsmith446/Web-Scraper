@@ -8,7 +8,7 @@ namespace WebScrape
 {
     class Program
     {
-        static void Main(string[] args)
+        internal static void Main(string[] args)
         {
 
             // link ChromeDriver.exe to program
@@ -50,21 +50,21 @@ namespace WebScrape
             // navigate to the portfolio data
             driver.Navigate().GoToUrl("https://finance.yahoo.com/portfolio/p_0/view/v1");
 
-            //scrape data to the console
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
-            var stocks = driver.FindElementsByXPath("//*[@id=\"main\"]/section/section[2]/div[2]/table/tbody/tr[*]/td[*]");
+            // assign a string the first table info
+            // th[1]
+            String sHead = "1";
+            // tr[1]
+            //String sRow = "1";
+            //// td[1]
+            //String sCol = "1";
 
-            //var elem = driver.FindElementsByXPath("//*[@id=\"main\"]/section/section[2]/div[2]/table/tbody/tr[10]/td[13]");
-            //((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", elem);
+            String firstBox = "";
 
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
-            // foreach goes through one stock at a time
-            foreach (var stock in stocks)
-                Console.WriteLine("Stock Watchlist: " + stock.Text);
+            firstBox = firstBox + driver.FindElementByXPath("//*[@id=\"main\"]/section/section[2]/div[1]/table/thead/tr/th[" + sHead + "]").Text;
+
+            Console.WriteLine(firstBox);
 
 
-            // next step is to scrape ALL the data, not just the data visible
-            // or scroll down right as the page loads
 
         }
     }
