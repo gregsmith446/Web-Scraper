@@ -13,11 +13,12 @@ namespace WebScrape
 
             // link ChromeDriver.exe to program
             ChromeOptions options = new ChromeOptions();
-            options.AddArgument("--headless");
+            // options.AddArgument("--headless");
             options.AddArguments("test-type");
             options.AddArgument("--disable-popup-blocking");
             options.AddArgument("--ignore-certificate-errors");
-            var driver = new ChromeDriver(@"/Users/gsmith/Desktop/Visual Studio Projects/WebScrape/WebScrape/bin/", options);
+            var driver = new ChromeDriver(@"\Users\gregs\Desktop\CD\WebScrape\WebScrape\bin", options);
+
 
             Console.WriteLine("Scrape on!");
 
