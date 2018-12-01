@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
+using System.Data.SqlClient;
 
 namespace WebScrape
 {
@@ -11,6 +10,17 @@ namespace WebScrape
     {
         internal static void Main(string[] args)
         {
+            // Step 0
+            // Make new DB connection string set to the 
+            string connectionString = @"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = Finance; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False";
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                // Step 0.5
+                // Open the SqlConnection.
+                connection.Open();
+            }
 
             // link ChromeDriver.exe to program
             ChromeOptions options = new ChromeOptions();
