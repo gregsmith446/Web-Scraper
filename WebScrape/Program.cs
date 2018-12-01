@@ -48,7 +48,6 @@ namespace WebScrape
             driver.FindElement(By.Id("login-signin")).Click();
             Console.WriteLine("navigated to password page");
 
-
             // Step 4
             // X-Out of the popup on the finance page
             var popUp = driver.FindElementByXPath("//*[@id=\"__dialog\"]/section/button");
@@ -89,7 +88,6 @@ namespace WebScrape
             Console.WriteLine(strThData);
 
             // Step 6 - locate stock data table and its rows
-
             // Find table with stock data
             IWebElement table = driver.FindElement(By.ClassName("_1TagL"));
 
@@ -97,7 +95,7 @@ namespace WebScrape
             IList<IWebElement> rows = new List<IWebElement>(table.FindElements(By.TagName("tr")));
             String strRowData = "";
 
-            // Step 7 - loop through rows to get collumns
+            // Step 7 - loop through rows to get columns
 
             // loop through rows
             for (int j = 1; j < rows.Count; j++)
