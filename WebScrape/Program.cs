@@ -10,24 +10,15 @@ namespace WebScrape
     {
         internal static void Main(string[] args)
         {
-            // Step 0
-            // Make new DB connection string set to the 
-            string connectionString = @"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = Finance; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False";
-
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                // Step 0.5
-                // Open the SqlConnection.
-                connection.Open();
-            }
-
             // link ChromeDriver.exe to program
             ChromeOptions options = new ChromeOptions();
+
             // options.AddArgument("--headless");
+
             options.AddArguments("test-type");
             options.AddArgument("--disable-popup-blocking");
             options.AddArgument("--ignore-certificate-errors");
+
             var driver = new ChromeDriver(@"\Users\gregs\Desktop\CD\WebScrape\WebScrape\bin", options);
 
             Console.WriteLine("Scraper starting to navigate to data!");
